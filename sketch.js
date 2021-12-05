@@ -1,12 +1,43 @@
+let player = [];
+let xPos;
+let dir;
+
+function preload() {
+  player[0] = loadImage('data/dog_for_processing.png');
+  player[1] = loadImage('data/dog_for_processing(2).png');
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+} 
+
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
+  xPos = 0;
+  dir = 0;
 }
 
 function draw() {
-  background(220);
-  if (mouseIsPressed){
-    
-    fill(random(mouseX));
-  ellipse(mouseX, mouseY, 100, 100);
+  background(255);
+  image(player[dir], xPos, height-100, 100, 100);
+}
+
+function mouseMoved(){
+  xPos = mouseX;
+  if (mouseX - pmouseX < 0){
+    dir = 0;
+  }
+  else{
+    dir = 1;
+  }
+}
+
+function touchMoved(){
+  xPos = mouseX;
+  if (mouseX - pmouseX < 0){
+    dir = 0;
+  }
+  else{
+    dir = 1;
   }
 }
